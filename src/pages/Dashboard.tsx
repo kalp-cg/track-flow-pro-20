@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useAppSelector } from '@/store/hooks';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Receipt, CheckCircle, Clock, TrendingUp } from 'lucide-react';
@@ -113,8 +114,8 @@ const Dashboard = () => {
             <CardDescription>Common tasks</CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
-            <a
-              href="/app/expenses/new"
+            <Link
+              to="/app/expenses/new"
               className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors"
             >
               <div className="h-10 w-10 rounded-lg bg-gradient-primary flex items-center justify-center">
@@ -124,11 +125,11 @@ const Dashboard = () => {
                 <p className="font-medium">Submit Expense</p>
                 <p className="text-sm text-muted-foreground">Create new expense report</p>
               </div>
-            </a>
+            </Link>
 
             {(user?.role === 'Manager' || user?.role === 'Admin') && (
-              <a
-                href="/app/approvals"
+              <Link
+                to="/app/approvals"
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors"
               >
                 <div className="h-10 w-10 rounded-lg bg-success flex items-center justify-center">
@@ -138,7 +139,7 @@ const Dashboard = () => {
                   <p className="font-medium">Review Approvals</p>
                   <p className="text-sm text-muted-foreground">{stats.pending} pending</p>
                 </div>
-              </a>
+              </Link>
             )}
           </CardContent>
         </Card>

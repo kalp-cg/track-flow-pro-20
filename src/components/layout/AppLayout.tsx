@@ -1,4 +1,5 @@
-import { Link, useNavigate, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link, useNavigate, Routes, Route, useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { logout } from '@/store/slices/authSlice';
 import { Button } from '@/components/ui/button';
@@ -27,6 +28,7 @@ import NewExpense from '@/pages/NewExpense';
 const AppLayout = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const { user } = useAppSelector((state) => state.auth);
   const { company } = useAppSelector((state) => state.company);
 
@@ -48,6 +50,11 @@ const AppLayout = () => {
     ] : []),
   ];
 
+  // Helper to check if path is active
+  const isActivePath = (path: string) => {
+    return location.pathname === path || location.pathname.startsWith(path + '/');
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -68,7 +75,7 @@ const AppLayout = () => {
                   asChild
                   className={cn(
                     "text-muted-foreground hover:text-foreground",
-                    window.location.pathname === item.path && "text-foreground bg-muted"
+                    isActivePath(item.path) && "text-foreground bg-muted"
                   )}
                 >
                   <Link to={item.path} className="flex items-center gap-2">

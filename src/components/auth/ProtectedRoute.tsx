@@ -1,6 +1,8 @@
+import { useEffect } from 'react';
 import { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAppSelector } from '@/store/hooks';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { setLoading } from '@/store/slices/authSlice';
 import { UserRole } from '@/types';
 
 interface ProtectedRouteProps {
@@ -9,7 +11,18 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute = ({ children, allowedRoles }: ProtectedRouteProps) => {
+  const dispatch = useAppDispatch();
   const { isAuthenticated, user, isLoading } = useAppSelector((state) => state.auth);
+
+  useEffect(() => {
+    // Check if we need to load user from token
+    const token = localStorage.getItem('token');
+    if (token && !user) {
+      // In a real app, you'd validate the token and load user data
+      // For now, just set loading to false
+      dispatch(setLoading(false));
+    }
+  }, [dispatch, user]);
 
   if (isLoading) {
     return (
