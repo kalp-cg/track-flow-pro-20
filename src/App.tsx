@@ -28,15 +28,9 @@ const App = () => (
             <Route path="/auth/login" element={<Login />} />
             <Route path="/auth/signup" element={<Signup />} />
             
-            <Route path="/app" element={
+            <Route path="/app/*" element={
               <ProtectedRoute>
-                <AppLayout>
-                  <Routes>
-                    <Route path="dashboard" element={<Dashboard />} />
-                    <Route path="expenses" element={<ExpenseList />} />
-                    <Route path="expenses/new" element={<NewExpense />} />
-                  </Routes>
-                </AppLayout>
+                <AppLayout />
               </ProtectedRoute>
             } />
             

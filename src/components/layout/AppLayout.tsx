@@ -1,5 +1,4 @@
-import { ReactNode } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, Routes, Route } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { logout } from '@/store/slices/authSlice';
 import { Button } from '@/components/ui/button';
@@ -21,12 +20,11 @@ import {
   BarChart3
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import Dashboard from '@/pages/Dashboard';
+import ExpenseList from '@/pages/ExpenseList';
+import NewExpense from '@/pages/NewExpense';
 
-interface AppLayoutProps {
-  children: ReactNode;
-}
-
-const AppLayout = ({ children }: AppLayoutProps) => {
+const AppLayout = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.auth);
@@ -120,7 +118,11 @@ const AppLayout = ({ children }: AppLayoutProps) => {
 
       {/* Main Content */}
       <main className="container py-6">
-        {children}
+        <Routes>
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="expenses" element={<ExpenseList />} />
+          <Route path="expenses/new" element={<NewExpense />} />
+        </Routes>
       </main>
     </div>
   );
