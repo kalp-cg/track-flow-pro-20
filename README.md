@@ -1,73 +1,142 @@
-# Welcome to your Lovable project
+# ExpenseFlow - Smart Expense Management
 
-## Project info
+A modern, full-featured expense management web application built with React, TypeScript, and Tailwind CSS.
 
-**URL**: https://lovable.dev/projects/4435682a-8f59-4520-9a72-6e0fa2065433
+## ✨ Features
 
-## How can I edit this code?
+### Core Functionality
+- **🔐 Role-Based Access Control**: Admin, Manager, and Employee roles with distinct permissions
+- **📸 OCR Receipt Scanning**: Automatic data extraction from receipts using Tesseract.js
+- **💱 Multi-Currency Support**: Real-time currency conversion with exchangerate-api.com
+- **✅ Approval Workflows**: Sequential and conditional approval rules
+- **📊 Analytics Dashboard**: Track expenses, approvals, and spending trends
+- **💾 Offline Support**: Submit expenses offline with automatic sync when reconnected
+- **📱 Mobile Responsive**: Fully responsive design for all device sizes
 
-There are several ways of editing your application.
+### Technical Features
+- React 18 with TypeScript for type-safe development
+- Redux Toolkit for predictable state management
+- React Query for efficient server state management
+- React Hook Form + Zod for robust form validation
+- Tailwind CSS with custom design system
+- Recharts for beautiful data visualization
+- LocalForage for offline persistence
 
-**Use Lovable**
+## 🚀 Quick Start
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/4435682a-8f59-4520-9a72-6e0fa2065433) and start prompting.
+```bash
+# Install dependencies
+npm install
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
+
+# Build for production
+npm run build
 ```
 
-**Edit a file directly in GitHub**
+## 🧪 Demo Accounts
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+The app includes demo accounts for testing:
 
-**Use GitHub Codespaces**
+- **Admin**: admin@acme.com
+- **Manager**: manager@acme.com  
+- **Employee**: employee@acme.com
+- **Password**: any text (demo mode)
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 📁 Project Structure
 
-## What technologies are used for this project?
+```
+src/
+├── components/
+│   ├── auth/          # Authentication components
+│   ├── layout/        # Layout components
+│   └── ui/            # Reusable UI components (shadcn)
+├── pages/             # Page components
+│   ├── auth/          # Login, Signup
+│   ├── Dashboard.tsx  # Main dashboard
+│   ├── ExpenseList.tsx
+│   └── NewExpense.tsx
+├── store/             # Redux store
+│   └── slices/        # Redux slices
+├── types/             # TypeScript types
+├── utils/             # Utility functions
+│   ├── api.ts         # API utilities
+│   ├── ocr.ts         # OCR functionality
+│   └── offlineStorage.ts
+└── App.tsx            # Main app component
+```
 
-This project is built with:
+## 🎨 Design System
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+The application uses a cohesive design system with:
+- **Primary**: Deep blue (#2563EB) for trust and professionalism
+- **Accent**: Purple (#A855F7) for CTAs and highlights
+- **Success**: Green for approvals
+- **Warning**: Amber for pending states
+- **Semantic tokens**: All colors defined as CSS variables in HSL
 
-## How can I deploy this project?
+## 🔧 Configuration
 
-Simply open [Lovable](https://lovable.dev/projects/4435682a-8f59-4520-9a72-6e0fa2065433) and click on Share -> Publish.
+### Environment Variables
 
-## Can I connect a custom domain to my Lovable project?
+While the demo uses mock data, in production you would configure:
 
-Yes, you can!
+```bash
+VITE_API_BASE_URL=your-api-url
+VITE_EXCHANGE_API_KEY=your-exchange-api-key
+```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Company Setup
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+On first signup:
+1. Select your country
+2. Company currency is auto-set based on REST Countries API
+3. Admin account is created automatically
+
+## 📝 Key Workflows
+
+### Expense Submission
+1. Upload receipt (drag-drop or camera)
+2. OCR automatically extracts amount, date, vendor
+3. Review and edit extracted data
+4. Submit for approval
+
+### Approval Process
+1. Managers see pending expenses
+2. Review receipt, amount, and conversion
+3. Approve or reject with comments
+4. Admin can configure approval rules
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React 18, TypeScript
+- **State Management**: Redux Toolkit
+- **Server State**: React Query (TanStack Query)
+- **Routing**: React Router v6
+- **Forms**: React Hook Form + Zod
+- **Styling**: Tailwind CSS + shadcn/ui
+- **Charts**: Recharts
+- **OCR**: Tesseract.js
+- **File Upload**: React Dropzone
+- **Offline**: LocalForage / IndexedDB
+
+## 🎯 Future Enhancements
+
+This V1 includes core features. Future enhancements could include:
+- Real backend API integration
+- Email notifications
+- CSV bulk import/export
+- Advanced analytics with filtering
+- Rule builder with drag-drop UI
+- Mobile app with Capacitor
+- Push notifications
+- Real-time collaboration
+
+## 📄 License
+
+MIT
+
+---
+
+Built with ❤️ using Lovable
